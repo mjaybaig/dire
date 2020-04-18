@@ -1,37 +1,39 @@
-import React from "react";
+import React, {Component} from "react";
 import { View, Text, StyleSheet, Button, FlatList ,TouchableOpacity,Platform,Image} from "react-native";
+import {createMaterialTopTabNavigator} from 'react-navigation-tabs'
+import MACHINECATEGORY from "../data/machineDetail"
 
-import{MACHINECATEGORY} from "../data/machineDetail"
 
-
-const MachineDetailScreen = props =>{
-   
-   const catId = props.navigation.getParam("categoryId")
+export default class MachineDetailScreen extends Component {
+   render(){
+   const catId = this.props.navigation.getParam("categoryId")
 
    const selectedCategory = MACHINECATEGORY.find(cat => cat.id == catId)
    return(
 <View>
 <Image source = {{uri: selectedCategory.imageUrl}} style={styles.image}/>
+
 <Text style = {styles.title}>Description</Text>
-<Text> 1
-2
-3</Text>
+<Text> 
+</Text>
 <Text style = {styles.title}>Common Injuries</Text>
-<Text > 1
-2
-3
+<Text > 
  </Text>
 
 </View>
    )
+   }
 }
+
+
 MachineDetailScreen.navigationOptions = (navigationData) =>{
    const catId = navigationData.navigation.getParam("categoryId");
    const selectedCategory = MACHINECATEGORY.find(cat => cat.id == catId)
    return {
-        headerTitle: selectedCategory.title
-   }
+        headerTitle: selectedCategory.title 
+      }
 }
+
 const styles = StyleSheet.create({
    image:{
       width :'100%',
@@ -48,4 +50,5 @@ const styles = StyleSheet.create({
       padding:12
     }
  });
-export default MachineDetailScreen;
+
+

@@ -1,18 +1,20 @@
-import React from "react";
+import React,{Component} from "react";
 import { TouchableOpacity, View, Text, StyleSheet,ImageBackground } from "react-native";
 
-const MachineGrid = props => {
-  return (
-    <TouchableOpacity style={styles.gridItem} onPress={props.onSelect}>
+
+  export default class MachineGrid extends Component{
+    render(){
+    return (
+    <TouchableOpacity style={styles.gridItem} onPress={this.props.onSelect}>
       <View
-        style={{ ...styles.container, ...{ backgroundColor: props.color } }}>
-      <ImageBackground source = {{uri: props.image}} style = {styles.bgImage}>
-        <Text style={styles.title}>{props.title}</Text>
+        style={{ ...styles.container, ...{ backgroundColor: this.props.color } }}>
+      <ImageBackground source = {{uri: this.props.image}} style = {styles.bgImage}>
+        <Text style={styles.title}>{this.props.title}</Text>
         </ImageBackground>
       </View>
     </TouchableOpacity>
   );
-};
+  }};
 
 const styles = StyleSheet.create({
   gridItem: {
@@ -51,4 +53,3 @@ const styles = StyleSheet.create({
 }
 });
 
-export default MachineGrid;
