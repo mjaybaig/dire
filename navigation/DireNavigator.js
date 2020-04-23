@@ -17,9 +17,11 @@ import Colors from "../constants/Color"
 
 const defaultStackOption = {
   headerStyle:{
-    backgroundColor: Platform.OS === "android" ?Colors.primaryColor: ""
+    backgroundColor: Colors.hedTint
+    // Platform.OS === "android" ?Colors.primaryColor: ""
   },
-  headerTintColor:Platform.OS == "android" ? "white" : Colors.primaryColor
+  headerTintColor:"white"
+  //Platform.OS == "android" ? "white" : Colors.primaryColor
 }
 
 //Main Navigator Stack navigation 

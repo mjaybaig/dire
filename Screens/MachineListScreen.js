@@ -15,7 +15,7 @@ export default class MachineListScreen extends Component {
             fullData:[],
             loading: false,
             error: null,
-            query:""
+            
 
         }
     }

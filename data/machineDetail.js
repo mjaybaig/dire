@@ -1,6 +1,6 @@
 import MachineCategory from '../models/machineCategory';
 
- const MACHINECATEGORY = [
+ const MACHINECATEGORY = [ 
   new MachineCategory('a1', 'tractor', '#f5a442','https://cdn.pixabay.com/photo/2017/04/29/21/04/tractor-2271577_150.jpg'),
   new MachineCategory('a2', 'harvester', '#f5a442',
   'https://pixabay.com/get/55e6dd414e53a414f6da8c7dda793678153cd6e65b556c4870277ddc9149c45cbb_1280.jpg'),
