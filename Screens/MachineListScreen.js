@@ -5,6 +5,7 @@ import _ from 'lodash'
 
 import MachineGrid from "../components/MachineGrid"
 import MACHINECATEGORY from "../data/machineDetail"
+import base64 from 'react-native-base64'
 
 export default class MachineListScreen extends Component {
     
@@ -68,6 +69,7 @@ export default class MachineListScreen extends Component {
     
        
     const renderGridItem = itemData => {
+        
         return <MachineGrid 
         title = {itemData.item.title}
         color = {itemData.item.color}

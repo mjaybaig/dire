@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
@@ -9,23 +9,53 @@ import ReduxThunk from 'redux-thunk'
 
 import machineReducer from "./store-redux/places-reducer"
 
+import {init,insertPlace,fetchPlaces} from "./Database/db"
 import DireNavigator from "./navigation/DireNavigator"
-enableScreens()
 
-//Meging all reducers to gether
-const rootReducer = combineReducers({
-  machines: machineReducer
-}) 
-//createing store and applying Reduxthunk so thunk package is attached to redux
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
 
-//planing to load fonts later 
-
-export default function App() {
+export default class App extends Component {
 // wraping with provided since every screen should have acess to store
-  return (
-    <Provider store={store}>
+constructor(props){
+  super(props);   
+  }
+
+componentDidMount(){
+  enableScreens()
+  init().then(() => {
+    console.log("Initialized database")
+  }).catch(err => {
+    console.log('initializing db failt')
+    console.log(err)
+  })
+
+   insertPlace().then(() => {
+    console.log("Inserted Items into database")
+  }).catch(err => {
+    console.log('Inserting failed')
+    console.log(err)
+  })  
+  fetchPlaces()
+  // loadMachine()
+}
+//  loadMachine =() =>{
+//   dbResult = await fetchPlaces()
+//    console.log(dbResult)
+//    //m : dbResult.rows._array
+
+// }
+// //Meging all reducers to gether
+//  rootReducer = combineReducers({
+//   machines: machineReducer
+// }) 
+// //createing store and applying Reduxthunk so thunk package is attached to redux
+//  store = createStore(rootReducer, applyMiddleware(ReduxThunk))
+
+// //planing to load fonts later
+
+render(){  
+return (
+    // <Provider store={store}>
     <DireNavigator />
-    </Provider>
-  )}
+    // </Provider>
+  )}}
 

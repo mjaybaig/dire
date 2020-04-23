@@ -7,7 +7,6 @@ import MACHINECATEGORY from "../data/machineDetail"
 export default class MachineDetailScreen extends Component {
    render(){
    const catId = this.props.navigation.getParam("categoryId")
-
    const selectedCategory = MACHINECATEGORY.find(cat => cat.id == catId)
    return(
 <View>

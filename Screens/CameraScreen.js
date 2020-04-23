@@ -35,7 +35,7 @@ const CameraScreen = props =>{
     });
     //console.log(image)
     setPickedImage(image.uri);
-    //props.onImageTaken(image.uri);
+    //onImageTaken(image.uri);
   };
   return (
     <View style={styles.imagePicker}>

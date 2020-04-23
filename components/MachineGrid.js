@@ -1,13 +1,13 @@
 import React,{Component} from "react";
 import { TouchableOpacity, View, Text, StyleSheet,ImageBackground } from "react-native";
-
-
+import Colors from '../constants/Color'
   export default class MachineGrid extends Component{
     render(){
+
     return (
     <TouchableOpacity style={styles.gridItem} onPress={this.props.onSelect}>
       <View
-        style={{ ...styles.container, ...{ backgroundColor: this.props.color } }}>
+        style={{ ...styles.container, ...{ backgroundColor: Colors.hedTint } }}>
       <ImageBackground source = {{uri: this.props.image}} style = {styles.bgImage}>
         <Text style={styles.title}>{this.props.title}</Text>
         </ImageBackground>
