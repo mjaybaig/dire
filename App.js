@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
-import {enableScreens} from "react-native-screens"
-import {createStore, combineReducers, applyMiddleware}  from 'redux'
-import {Provider} from 'react-redux'
+import {enableScreens} from "react-native-screens";
+import {createStore, combineReducers, applyMiddleware}  from 'redux';
+import {Provider} from 'react-redux';
+import { fetch } from "@tensorflow/tfjs-react-native";
 import ReduxThunk from 'redux-thunk'
 
 import machineReducer from "./store-redux/places-reducer"
 
 import DireNavigator from "./navigation/DireNavigator"
 enableScreens()
+
+
 
 //Meging all reducers to gether
 const rootReducer = combineReducers({
@@ -21,11 +24,16 @@ const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
 
 //planing to load fonts later 
 
-export default function App() {
-// wraping with provided since every screen should have acess to store
-  return (
-    <Provider store={store}>
-    <DireNavigator />
-    </Provider>
-  )}
+class App extends React.Component {
+  
+// wrapping with provided since every screen should have acess to store
+  render(){
+    return (
+      <Provider store={store}>
+        <DireNavigator />
+      </Provider>
+    )
+  }
+}
 
+export default App;
