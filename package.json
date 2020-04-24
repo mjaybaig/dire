@@ -10,6 +10,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.9.0",
     "@react-native-community/masked-view": "^0.1.10",
+    "@teachablemachine/image": "^0.8.4",
     "@tensorflow-models/mobilenet": "^2.0.4",
     "@tensorflow/tfjs": "^1.7.3",
     "@tensorflow/tfjs-react-native": "^0.2.3",

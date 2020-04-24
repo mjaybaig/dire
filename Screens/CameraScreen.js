@@ -5,9 +5,12 @@ import * as Permissions from 'expo-permissions';
 
 import * as tf from "@tensorflow/tfjs";
 import * as jpeg from "jpeg-js"
+import * as tmImage from '@teachablemachine/image';
 
 import { FileSystem } from "react-native-unimodules";
 // import * as fs from "react-native-fs";
+
+
 
 import Colors from '../constants/Color'
 import { decodeJpeg, fetch } from '@tensorflow/tfjs-react-native';
@@ -36,15 +39,26 @@ class CameraScreen extends React.Component{
         console.log(reject)
       }
     )
-    tf.loadLayersModel('../mlmodel/model.json').then(machineClassifer => {
-      this.setState({
-        machineClassifer: machineClassifer,
-        isModelReady: true
-      });
-      console.log(this.state.machineClassifer);
+
+    // machClassifier = await tmImage.load("../tmmodel/model.json", "../tm-my-image-model/metadata.json");
+    // this.setState({
+    //   classifier: machClassifier,
+    //   isModelReady: true
+    // })
+    tmImage.load("../data/tm-my-image-model/model.json", "../data/tm-my-image-model/metadata.json").then(classifier => {
+      console.log(classifier);
     }, err => {
       console.log(err);
     })
+    // tf.loadLayersModel('../mlmodel/model.json').then(machineClassifer => {
+    //   this.setState({
+    //     machineClassifer: machineClassifer,
+    //     isModelReady: true
+    //   });
+    //   console.log(this.state.machineClassifer);
+    // }, err => {
+    //   console.log(err);
+    // })
     
   }
     
@@ -142,6 +156,7 @@ class CameraScreen extends React.Component{
         title="Take Image"
         color={Colors.primary}
         onPress={this.takeImageHandler}
+        disabled={this.state.isModelReady}
         />
     </View>
   );
