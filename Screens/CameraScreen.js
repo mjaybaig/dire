@@ -3,22 +3,24 @@ import { View, Button, Image, Text, StyleSheet, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
+import * as model from "../data/tm-my-image-model/model.json";
+const modelWeights = require('../data/tm-my-image-model/weights.bin');
+
 import * as tf from "@tensorflow/tfjs";
 import * as jpeg from "jpeg-js"
 import * as tmImage from '@teachablemachine/image';
 
-import { FileSystem } from "react-native-unimodules";
-// import * as fs from "react-native-fs";
+import * as ImageManipulator from 'expo-image-manipulator';
 
 
 
 import Colors from '../constants/Color'
-import { decodeJpeg, fetch } from '@tensorflow/tfjs-react-native';
+import { decodeJpeg, fetch, asyncStorageIO, bundleResourceIO } from '@tensorflow/tfjs-react-native';
+import { imag } from '@tensorflow/tfjs';
 
 
 class CameraScreen extends React.Component{
   constructor(props){
-
     super(props)
 
     this.state = {
@@ -29,6 +31,7 @@ class CameraScreen extends React.Component{
 
   }
   async componentDidMount(){
+    // console.log(__dirname)
     tf.ready().then(
       val => {
         this.setState({
@@ -40,25 +43,16 @@ class CameraScreen extends React.Component{
       }
     )
 
-    // machClassifier = await tmImage.load("../tmmodel/model.json", "../tm-my-image-model/metadata.json");
-    // this.setState({
-    //   classifier: machClassifier,
-    //   isModelReady: true
-    // })
-    tmImage.load("../data/tm-my-image-model/model.json", "../data/tm-my-image-model/metadata.json").then(classifier => {
-      console.log(classifier);
+    tf.loadLayersModel(bundleResourceIO(model, modelWeights)).then(classifier => {
+      console.log("Loaded Model");
+      this.setState({
+        machineClassifer: classifier,
+        isModelReady: true
+      })
     }, err => {
+      console.log("Error!")
       console.log(err);
-    })
-    // tf.loadLayersModel('../mlmodel/model.json').then(machineClassifer => {
-    //   this.setState({
-    //     machineClassifer: machineClassifer,
-    //     isModelReady: true
-    //   });
-    //   console.log(this.state.machineClassifer);
-    // }, err => {
-    //   console.log(err);
-    // })
+    });
     
   }
     
@@ -77,51 +71,30 @@ class CameraScreen extends React.Component{
     return true;
   };
   
-  imagetoTensor = rawImageData => {
+  imagetoTensor = (rawImageData) => {
     const TO_UINT8ARRAY = true
-    const { width, height, data } = jpeg.decode(rawImageData, TO_UINT8ARRAY)
-    console.log(width)
-    // Drop the alpha channel info for mobilenet
-    const buffer = new Uint8Array(width * height * 3)
-    let offset = 0 // offset into original data
-    for (let i = 0; i < buffer.length; i += 3) {
-      buffer[i] = data[offset]
-      buffer[i + 1] = data[offset + 1]
-      buffer[i + 2] = data[offset + 2]
-      offset += 4
-    }
-    console.log("hello")
-    return tf.tensor3d(buffer, [height, width, 3])
+      const { width, height, data } = jpeg.decode(rawImageData, TO_UINT8ARRAY)
+      // Drop the alpha channel info for mobilenet
+      const buffer = new Uint8Array(width * height * 3)
+      let offset = 0 // offset into original data
+      for (let i = 0; i < buffer.length; i += 3) {
+        buffer[i] = data[offset]
+        buffer[i + 1] = data[offset + 1]
+        buffer[i + 2] = data[offset + 2]
+        offset += 4
+      }
+      return tf.tensor4d(buffer, [1, height, width, 3]);
   }
 
   predictMachine = async () => {
-    // const image = await fs.readFile(this.state.pickedImage.uri);
-    // var rawImageData = jpeg.decode(image)
-    // console.log(rawImageData);
-    // console.log(image);
     try{
-      // const image = await FileSystem.readAsStringAsync(this.state.pickedImage.uri, {encoding: FileSystem.EncodingType.Base64});
-      const imageAssetPath = Image.resolveAssetSource(this.state.pickedImage);
-      console.log(imageAssetPath);
-      const response = await fetch(imageAssetPath.uri, {}, {isBinary: true});
-      // console.log(response);
-      // const rawImageData = await im.arrayBuffer()
+      const response = await fetch(this.state.resizedImage.uri, {}, {isBinary: true});
       const rawImageData = await response.arrayBuffer();
-      console.log(rawImageData);
-      // console.log(image)
-      const imageTensor = this.imagetoTensor(rawImageData);
-      // console.log(imageTensor);
-      console.log(this.state.machineClassifer);
-      console.log(this.state.machineClassifer.predict(imageTensor))
-    }
-    catch(err){
-      console.log(err);
-    }
-      // this.state.machineClassifer.classify(imgTensor).then(predictions => {
-      //   console.log(predictions);
-      // });
-    // await fetch(this.state.pickedImage, {}, {isBinary: true});
-
+      console.log("PREDICTION: ", this.state.machineClassifer.predict(this.imagetoTensor(rawImageData)).arraySync())
+      }
+      catch(err){
+        console.log(err)
+      }
   }
 
   takeImageHandler = async () => {
@@ -133,12 +106,17 @@ class CameraScreen extends React.Component{
     const image = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [16, 9],
-      quality: 0.5
+      quality: 0.5,
     });
     this.setState({
       pickedImage: {uri: image.uri}
     })
-    this.predictMachine();
+    ImageManipulator.manipulateAsync(image.uri, [{resize: {width: 224, height: 224}}], 
+      {compress: 0, format: ImageManipulator.SaveFormat.JPEG}).then(resizeImage => {
+        this.setState({resizedImage: resizeImage})
+        this.predictMachine();
+      });
+
     //props.onImageTaken(image.uri);
   }
 
@@ -156,7 +134,7 @@ class CameraScreen extends React.Component{
         title="Take Image"
         color={Colors.primary}
         onPress={this.takeImageHandler}
-        disabled={this.state.isModelReady}
+        disabled={!this.state.isModelReady}
         />
     </View>
   );
