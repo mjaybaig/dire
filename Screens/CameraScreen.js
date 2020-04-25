@@ -3,8 +3,10 @@ import { View, Button, Image, Text, StyleSheet, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
-import * as model from "../data/tm-my-image-model/model.json";
-const modelWeights = require('../data/tm-my-image-model/weights.bin');
+const model  = require( "../assets/model/model.json");
+const modelWeights = require('../assets/model/weights.bin');
+
+import Tflite from "tflite-react-native";
 
 import * as tf from "@tensorflow/tfjs";
 import * as jpeg from "jpeg-js"
@@ -22,7 +24,7 @@ import { imag } from '@tensorflow/tfjs';
 class CameraScreen extends React.Component{
   constructor(props){
     super(props)
-
+    this.tflite = new Tflite();
     this.state = {
       isTfReady: false,
       pickedImage: null,
@@ -42,6 +44,19 @@ class CameraScreen extends React.Component{
         console.log(reject)
       }
     )
+    // this.tflite.loadModel({
+    //   model: "../assets/model/model_unquant.tflite",
+    //   labels: '../assets/model/labels.txt',
+    //   numThreads: 1
+    // }, (err, res) => {
+    //   if(err){
+    //     console.log(err)
+    //   }
+    //   else{
+    //     console.log("HELLO")
+    //     console.log(res);
+    //   }
+    // })
 
     tf.loadLayersModel(bundleResourceIO(model, modelWeights)).then(classifier => {
       console.log("Loaded Model");
@@ -84,13 +99,19 @@ class CameraScreen extends React.Component{
         offset += 4
       }
       return tf.tensor4d(buffer, [1, height, width, 3]);
+
   }
 
   predictMachine = async () => {
     try{
+      const TO_UINT8ARRAY = true
       const response = await fetch(this.state.resizedImage.uri, {}, {isBinary: true});
       const rawImageData = await response.arrayBuffer();
-      console.log("PREDICTION: ", this.state.machineClassifer.predict(this.imagetoTensor(rawImageData)).arraySync())
+      const tensor = this.imagetoTensor(rawImageData);
+      // const tensor = decodeJpeg(jpeg.decode(rawImageData, TO_UINT8ARRAY));
+      let predictions = await this.state.machineClassifer.predict(tensor);
+      console.log(predictions.dataSync());
+      // console.log("PREDICTION: ", this.state.machineClassifer.predict(this.imagetoTensor(rawImageData)).arraySync())
       }
       catch(err){
         console.log(err)
@@ -111,8 +132,10 @@ class CameraScreen extends React.Component{
     this.setState({
       pickedImage: {uri: image.uri}
     })
+    // console.log(this.state.machineClassifer.predict(image))
     ImageManipulator.manipulateAsync(image.uri, [{resize: {width: 224, height: 224}}], 
       {compress: 0, format: ImageManipulator.SaveFormat.JPEG}).then(resizeImage => {
+        // console.log(resizeImage);
         this.setState({resizedImage: resizeImage})
         this.predictMachine();
       });
