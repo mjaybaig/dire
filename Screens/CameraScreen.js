@@ -6,7 +6,7 @@ import * as Permissions from 'expo-permissions';
 // const model  = require( "../assets/model/model.json");
 // const modelWeights = require('../assets/model/weights.bin');
 
-// import Tflite from "tflite-react-native";
+import Tflite from "tflite-react-native";
 
 import * as tf from "@tensorflow/tfjs";
 import * as jpeg from "jpeg-js"
@@ -45,19 +45,23 @@ class CameraScreen extends React.Component{
     //   }
     // )
     console.log("hello world");
-    // this.tflite.loadModel({
-    //   model: "model_unquant.tflite",
-    //   labels: 'model/labels.txt',
-    //   numThreads: 1
-    // }, (err, res) => {
-    //   if(err){
-    //     console.log(err)
-    //   }
-    //   else{
-    //     console.log("HELLO")
-    //     console.log(res);
-    //   }
-    // })
+
+    this.tflite.loadModel({
+      model: "model/model_unquant.tflite",
+      labels: 'model/labels.txt',
+      numThreads: 1
+    }, (err, res) => {
+      if(err){
+        console.log(err)
+      }
+      else{
+        console.log("HELLO")
+        this.setState({
+          isModelReady: true
+        })
+        console.log(res);
+      }
+    })
 
     // tf.loadLayersModel(bundleResourceIO(model, modelWeights)).then(classifier => {
     //   console.log("Loaded Model");
@@ -137,7 +141,17 @@ class CameraScreen extends React.Component{
     ImageManipulator.manipulateAsync(image.uri, [{resize: {width: 224, height: 224}}], 
       {compress: 0, format: ImageManipulator.SaveFormat.JPEG}).then(resizeImage => {
         // console.log(resizeImage);
-        this.setState({resizedImage: resizeImage})
+        this.tflite.runModelOnImage({
+          path: resizeImage.uri
+        }, (err, res) => {
+          if(err){
+            console.log(err)
+          }
+          else{
+            console.log(res)
+          }
+        })
+        // this.setState({resizedImage: resizeImage})
         // this.predictMachine();
       });
 
