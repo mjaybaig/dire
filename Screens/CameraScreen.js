@@ -3,22 +3,15 @@ import { View, Button, Image, Text, StyleSheet, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
-// const model  = require( "../assets/model/model.json");
-// const modelWeights = require('../assets/model/weights.bin');
-
 import Tflite from "tflite-react-native";
 
 import * as tf from "@tensorflow/tfjs";
 import * as jpeg from "jpeg-js"
-// import * as tmImage from '@teachablemachine/image';
 
 import * as ImageManipulator from 'expo-image-manipulator';
 
-
-
 import Colors from '../constants/Color'
 import { decodeJpeg, fetch, asyncStorageIO, bundleResourceIO } from '@tensorflow/tfjs-react-native';
-import { imag } from '@tensorflow/tfjs';
 
 
 class CameraScreen extends React.Component{
@@ -28,23 +21,12 @@ class CameraScreen extends React.Component{
     this.state = {
       isTfReady: false,
       pickedImage: null,
-      isModelReady: false
+      isModelReady: false,
+      whichMachine: null
     }
 
   }
   async componentDidMount(){
-    // console.log(__dirname)
-    // tf.ready().then(
-    //   val => {
-    //     this.setState({
-    //       isTfReady: true
-    //     })
-    //     console.log(this.state);
-    //   }, reject => {
-    //     console.log(reject)
-    //   }
-    // )
-    console.log("hello world");
 
     this.tflite.loadModel({
       model: "model/model_unquant.tflite",
@@ -55,7 +37,6 @@ class CameraScreen extends React.Component{
         console.log(err)
       }
       else{
-        console.log("HELLO")
         this.setState({
           isModelReady: true
         })
@@ -63,16 +44,6 @@ class CameraScreen extends React.Component{
       }
     })
 
-    // tf.loadLayersModel(bundleResourceIO(model, modelWeights)).then(classifier => {
-    //   console.log("Loaded Model");
-    //   this.setState({
-    //     machineClassifer: classifier,
-    //     isModelReady: true
-    //   })
-    // }, err => {
-    //   console.log("Error!")
-    //   console.log(err);
-    // });
     
   }
     
@@ -128,37 +99,40 @@ class CameraScreen extends React.Component{
     if (!hasPermission) {
       return;
     }
-    //ASync operation which retains a promise wait untill user is done /cancel
-    const image = await ImagePicker.launchCameraAsync({
-      allowsEditing: true,
+
+    ImagePicker.launchCameraAsync({
+      allowsEditing: false,
       aspect: [16, 9],
       quality: 0.5,
-    });
-    this.setState({
-      pickedImage: {uri: image.uri}
-    })
-    // console.log(this.state.machineClassifer.predict(image))
-    ImageManipulator.manipulateAsync(image.uri, [{resize: {width: 224, height: 224}}], 
-      {compress: 0, format: ImageManipulator.SaveFormat.JPEG}).then(resizeImage => {
-        // console.log(resizeImage);
-        this.tflite.runModelOnImage({
-          path: resizeImage.uri
-        }, (err, res) => {
-          if(err){
-            console.log(err)
-          }
-          else{
-            console.log(res)
-          }
-        })
-        // this.setState({resizedImage: resizeImage})
-        // this.predictMachine();
-      });
+    }).then(newImage => {
+      this.setState({
+        pickedImage: {uri: newImage.uri}
+      })
 
-    // props.onImageTaken(image.uri);
+      ImageManipulator.manipulateAsync(newImage.uri, [{rotate: 1}], 
+          {compress: 1, format: ImageManipulator.SaveFormat.JPEG}).then(resizeImage => {
+            // console.log(resizeImage);
+            this.tflite.runModelOnImage({
+              path: resizeImage.uri, 
+            }, (err, res) => {
+              if(err){
+                console.log(err)
+              }
+              else{
+
+                  this.setState({
+                    whichMachine: res[0].label
+                  });
+              }
+            })
+      }).catch(err => {
+        console.log(err);
+      })
+    });
   }
 
   render(){
+    console.log("STATE: ", this.state);
     return (
       <View style={this.styles.imagePicker}>
       <View style={this.styles.imagePreview}>
@@ -174,6 +148,9 @@ class CameraScreen extends React.Component{
         onPress={this.takeImageHandler}
         disabled={!this.state.isModelReady}
         />
+        {!this.state.whichMachine ? (
+          <Text></Text>
+        ):(<Text>{this.state.whichMachine}</Text>)}
     </View>
   );
 }
