@@ -3,14 +3,14 @@ import { View, Button, Image, Text, StyleSheet, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
-const model  = require( "../assets/model/model.json");
-const modelWeights = require('../assets/model/weights.bin');
+// const model  = require( "../assets/model/model.json");
+// const modelWeights = require('../assets/model/weights.bin');
 
-import Tflite from "tflite-react-native";
+// import Tflite from "tflite-react-native";
 
 import * as tf from "@tensorflow/tfjs";
 import * as jpeg from "jpeg-js"
-import * as tmImage from '@teachablemachine/image';
+// import * as tmImage from '@teachablemachine/image';
 
 import * as ImageManipulator from 'expo-image-manipulator';
 
@@ -34,19 +34,20 @@ class CameraScreen extends React.Component{
   }
   async componentDidMount(){
     // console.log(__dirname)
-    tf.ready().then(
-      val => {
-        this.setState({
-          isTfReady: true
-        })
-        console.log(this.state);
-      }, reject => {
-        console.log(reject)
-      }
-    )
+    // tf.ready().then(
+    //   val => {
+    //     this.setState({
+    //       isTfReady: true
+    //     })
+    //     console.log(this.state);
+    //   }, reject => {
+    //     console.log(reject)
+    //   }
+    // )
+    console.log("hello world");
     // this.tflite.loadModel({
-    //   model: "../assets/model/model_unquant.tflite",
-    //   labels: '../assets/model/labels.txt',
+    //   model: "model_unquant.tflite",
+    //   labels: 'model/labels.txt',
     //   numThreads: 1
     // }, (err, res) => {
     //   if(err){
@@ -58,16 +59,16 @@ class CameraScreen extends React.Component{
     //   }
     // })
 
-    tf.loadLayersModel(bundleResourceIO(model, modelWeights)).then(classifier => {
-      console.log("Loaded Model");
-      this.setState({
-        machineClassifer: classifier,
-        isModelReady: true
-      })
-    }, err => {
-      console.log("Error!")
-      console.log(err);
-    });
+    // tf.loadLayersModel(bundleResourceIO(model, modelWeights)).then(classifier => {
+    //   console.log("Loaded Model");
+    //   this.setState({
+    //     machineClassifer: classifier,
+    //     isModelReady: true
+    //   })
+    // }, err => {
+    //   console.log("Error!")
+    //   console.log(err);
+    // });
     
   }
     
@@ -137,10 +138,10 @@ class CameraScreen extends React.Component{
       {compress: 0, format: ImageManipulator.SaveFormat.JPEG}).then(resizeImage => {
         // console.log(resizeImage);
         this.setState({resizedImage: resizeImage})
-        this.predictMachine();
+        // this.predictMachine();
       });
 
-    //props.onImageTaken(image.uri);
+    // props.onImageTaken(image.uri);
   }
 
   render(){
