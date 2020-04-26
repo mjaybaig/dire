@@ -61,38 +61,6 @@ class CameraScreen extends React.Component{
     }
     return true;
   };
-  
-  imagetoTensor = (rawImageData) => {
-    const TO_UINT8ARRAY = true
-      const { width, height, data } = jpeg.decode(rawImageData, TO_UINT8ARRAY)
-      // Drop the alpha channel info for mobilenet
-      const buffer = new Uint8Array(width * height * 3)
-      let offset = 0 // offset into original data
-      for (let i = 0; i < buffer.length; i += 3) {
-        buffer[i] = data[offset]
-        buffer[i + 1] = data[offset + 1]
-        buffer[i + 2] = data[offset + 2]
-        offset += 4
-      }
-      return tf.tensor4d(buffer, [1, height, width, 3]);
-
-  }
-
-  predictMachine = async () => {
-    try{
-      const TO_UINT8ARRAY = true
-      const response = await fetch(this.state.resizedImage.uri, {}, {isBinary: true});
-      const rawImageData = await response.arrayBuffer();
-      const tensor = this.imagetoTensor(rawImageData);
-      // const tensor = decodeJpeg(jpeg.decode(rawImageData, TO_UINT8ARRAY));
-      let predictions = await this.state.machineClassifer.predict(tensor);
-      console.log(predictions.dataSync());
-      // console.log("PREDICTION: ", this.state.machineClassifer.predict(this.imagetoTensor(rawImageData)).arraySync())
-      }
-      catch(err){
-        console.log(err)
-      }
-  }
 
   takeImageHandler = async () => {
     const hasPermission = await this.verifyPermissions();
