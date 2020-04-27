@@ -1,13 +1,13 @@
 import React,{Component} from "react";
 import { TouchableOpacity, View, Text, StyleSheet,ImageBackground } from "react-native";
-
-
+import Colors from '../constants/Color'
   export default class MachineGrid extends Component{
     render(){
+    //creating a toucable screen and passing information to map list screen 
     return (
     <TouchableOpacity style={styles.gridItem} onPress={this.props.onSelect}>
       <View
-        style={{ ...styles.container, ...{ backgroundColor: this.props.color } }}>
+        style={{ ...styles.container, ...{ backgroundColor: Colors.hedTint } }}>
       <ImageBackground source = {{uri: this.props.image}} style = {styles.bgImage}>
         <Text style={styles.title}>{this.props.title}</Text>
         </ImageBackground>
@@ -38,10 +38,10 @@ const styles = StyleSheet.create({
     //fontFamily: "open-sans-bold",
     fontSize: 22,
     textAlign: "right",
-    fontSize: 15,
+    fontSize: 20,
     color:"white",
     //color with built in transparency
-    backgroundColor: "rgba(0,0,0,0.6)",
+    backgroundColor: "rgba(0,0,0,0.7)",
     paddingVertical : 5,
     paddingHorizontal:12,
   },
