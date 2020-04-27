@@ -35,8 +35,8 @@
 
       <meta-data android:name="expo.modules.updates.EXPO_UPDATE_URL" android:value="YOUR-APP-URL-HERE" />
       <meta-data android:name="expo.modules.updates.EXPO_SDK_VERSION" android:value="YOUR-APP-SDK-VERSION-HERE" />
-
-      <activity
+      <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBnSm8AZ8NtPi9Fs-A7o0cFm87ObLYL5PE"/>
+        <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"

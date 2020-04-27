@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet,Keyboard,TouchableWithoutFeedback,TouchableOpacity,ScrollView} from "react-native";
 import MapView from 'react-native-maps'
-import PlaceInput from '../components/PlaceInput'
 import axios from "axios"
 import googleKey from "../env"
 import ShowDirectionScreen from "../components/ShowDirectionScreen"
-//import Geolocation from 'react-native-geolocation-service'
+import Geolocation from 'react-native-geolocation-service'
+
+
 export default class  HospitalScreen extends Component{
    constructor(props){
        super(props)
@@ -21,8 +22,9 @@ export default class  HospitalScreen extends Component{
    }
    componentDidMount(){
        //continusoly get positon from user and stoping this dismount happens
-        navigator.geolocation.watchPosition(
-            pos =>{
+       Geolocation.watchPosition(
+           pos =>{
+                console.log(pos)
                 this.setState({
                     userLatitude: pos.coords.latitude,
                     userLongitude: pos.coords.longitude,
@@ -85,7 +87,7 @@ export default class  HospitalScreen extends Component{
             Keyboard.dismiss()
         }
       componentWillUnmount(){
-          navigator.geolocation.clearWatch(this.locationWtchID)
+          Geolocation.clearWatch(this.locationWtchID)
       }
     
     
