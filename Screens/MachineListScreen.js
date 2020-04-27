@@ -5,10 +5,9 @@ import _ from 'lodash'
 
 import MachineGrid from "../components/MachineGrid"
 import MACHINECATEGORY from "../data/machineDetail"
-import base64 from 'react-native-base64'
 
 export default class MachineListScreen extends Component {
-    
+    //initialed variables for the search operation
     constructor(props){
         super(props);
         this.state = {
@@ -16,13 +15,13 @@ export default class MachineListScreen extends Component {
             fullData:[],
             loading: false,
             error: null,
-            
-
         }
     }
+    //will load every time
      componentDidMount(){
          this.getData()
      }
+     //using debounce to render input with delay so that the list is not filitred for every workd typed
      getData = _.debounce(() =>{
         this.setState({loading :true})
         const machine = MACHINECATEGORY
@@ -33,7 +32,7 @@ export default class MachineListScreen extends Component {
             //query:""
         })
      },250 ) 
-
+     //as the name indacts footer 
     renderFooter = () => {
         if(!this.state.loading) return null
         return (
@@ -55,6 +54,7 @@ export default class MachineListScreen extends Component {
         value = {data,text}
        />
     }
+    //search fucntion to handle shearch by converting all entry to loawer cace while comparing
     handelSearch = (text) => {
         const formatedQuery = text.toLowerCase()
          const data = _.filter(this.state.fullData, photo => {
@@ -66,10 +66,10 @@ export default class MachineListScreen extends Component {
          this.setState({data,text})
       }
     render(){
-    
-       
+
+    //calling the machine grid to get the layout and passing to Detail sceen
+    //By forwarding the ID so only the machine slected is diplayed
     const renderGridItem = itemData => {
-        
         return <MachineGrid 
         title = {itemData.item.title}
         color = {itemData.item.color}
@@ -84,8 +84,6 @@ export default class MachineListScreen extends Component {
         }}
         />
     }
-   
-
     //Flatlist gives us the item property
     // KeyExtractor (unique id maping) is not required for the latest verstion of react
     //using it for my refrence

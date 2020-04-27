@@ -6,6 +6,7 @@ import {enableScreens} from "react-native-screens"
 import {createStore, combineReducers, applyMiddleware}  from 'redux'
 import {Provider} from 'react-redux'
 import ReduxThunk from 'redux-thunk'
+import * as Permissions from 'expo-permissions';
 
 import machineReducer from "./store-redux/places-reducer"
 
@@ -36,13 +37,17 @@ componentDidMount(){
   })  
   fetchPlaces()
   // loadMachine()
+  this.getLocationAsync()
 }
-//  loadMachine =() =>{
-//   dbResult = await fetchPlaces()
-//    console.log(dbResult)
-//    //m : dbResult.rows._array
-
-// }
+getLocationAsync = async () => {
+  let { status } = await Permissions.askAsync(Permissions.LOCATION);
+  if (status !== 'granted') {
+    this.setState({
+      errorMessage: 'Permission to access location was denied',
+    });
+  }
+}
+//}
 // //Meging all reducers to gether
 //  rootReducer = combineReducers({
 //   machines: machineReducer
@@ -57,5 +62,6 @@ return (
     // <Provider store={store}>
     <DireNavigator />
     // </Provider>
-  )}}
+  )}
+}
 

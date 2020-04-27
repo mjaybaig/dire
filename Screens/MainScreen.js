@@ -5,7 +5,8 @@ import MenueItem from '../components/menuItem'
 
 export default class MainScreen extends Component{
     render(){
-    return(
+    //calling menue item to get format with image to diplay here
+        return(
         <View style ={styles.overlayContainer}>
         <View style = {styles.top}>
         <Text style = {styles.header}> H O M E</Text>

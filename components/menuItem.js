@@ -3,6 +3,7 @@ import {View,Image,StyleSheet} from 'react-native'
 
 export default class MenuItem extends Component {
     render(){
+        //return custom style imtes to main screen
         return(
             <View style = {styles.menuItem}>
             <Image source = {this.props.itemImage}

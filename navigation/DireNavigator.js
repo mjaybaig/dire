@@ -10,9 +10,8 @@ import MainScreen from "../Screens/MainScreen"
 import MachineListScreen from "../Screens/MachineListScreen"
 import MachineDetailScreen from "../Screens/MachineDetailScreen"
 import CameraScreen from "../Screens/CameraScreen"
-import MapsScreen from "../Screens/MapsScreen"
-import SmoothMapsScreen from "../Screens/SmoothMapsScreen"
-
+import HospitalScreen from "../Screens/HospitalScreen"
+import ShowDirectionScreen from '../components/ShowDirectionScreen'
 import Colors from "../constants/Color"
 
 const defaultStackOption = {
@@ -30,8 +29,8 @@ const DireNavigator = createStackNavigator({
     MachineList: MachineListScreen,
     MachineDetail : MachineDetailScreen,
     Camera:CameraScreen,
-    Maps:MapsScreen,
-    SmoothMaps:SmoothMapsScreen
+    Hospitals:HospitalScreen,
+    ShowDirection:ShowDirectionScreen
 
 },{
     defaultNavigationOptions: defaultStackOption
@@ -55,7 +54,8 @@ const TabCamNavigator = createStackNavigator({
 })
 //Buttom Tab bavigation when user clikcs on Maps screen
 const TabMapNavigator = createStackNavigator({
-  Maps:MapsScreen,
+  Hospital:HospitalScreen,
+  ShowDirection:ShowDirectionScreen
 },{
   defaultNavigationOptions: defaultStackOption
 })
@@ -64,7 +64,7 @@ const TabsScreenConfig = {
   Home: {
     screen: DireNavigator,
     navigationOptions: {
-      // tabinfo will diynamically get the collor from tabBarOption using it for my
+      // tab info will diynamically get the collor from tabBarOption using it for my
       // convienece
       tabBarIcon: tabInfo => {return (<Ionicons name="ios-home"size={20}color={tabInfo.tintColor } />);
       },
@@ -91,15 +91,17 @@ const TabsScreenConfig = {
       tabBarColor: Colors.accentColor
     }
   },
-  Maps: {
+  Hospital: {
     screen: TabMapNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
-        return (<MaterialCommunityIcons name="map-marker-outline" size={25}color={tabInfo.tintColor} />);
+        return (<MaterialCommunityIcons name="hospital" size={25}color={tabInfo.tintColor} />);
       },
       tabBarColor: Colors.accentColor
     }
   },
+  // will be implemnting in iteration 2
+
   // Temp: {
   //   screen: MachineListScreen,
   //   navigationOptions: {
@@ -120,7 +122,6 @@ const TabsScreenConfig = {
   //   }
   // }
 }
-
 const DireTabNavigator = Platform.OS == "android"
  ? createMaterialBottomTabNavigator(TabsScreenConfig, {
    activeTintColor: 'white',

@@ -32,12 +32,12 @@ export const init = () => {
             //   `INSERT INTO places (title, imageUri, address, lat, lng) VALUES (?, ?, ?, ?, ?);`,
             // [title, imageUri, address, lat, lng]
                 //prevents sql injection by using which might break database
-              `REPLACE INTO places (id,title, imageUri, color) VALUES (?,?,?,?),(?,?,?,?),(?,?,?,?),(?,?,?,?),(?,?,?,?),(?,?,?,?),(?,?,?,?);`,
+              `REPLACE INTO places (id,title, imageUri, color) VALUES (?,?,?,?),(?,?,?,?),(?,?,?,?),(?,?,?,?),(?,?,?,?),(?,?,?,?);`,
               ['1a','tractor','adgv','#F3BA36',
               '2a','bulldozer','adgv','#F3BA36',
               '3a','harvester','adgv','#F3BA36',
               '4a','hay-baler','adgv','#F3BA36',
-              '5a','tillage','adgv','#F3BA36',
+              '5a','farm-slasher','adgv','#F3BA36',
               '6a','quad-bike','adgv','#F3BA36'],
               (_, res) => {
                 console.log(res)
@@ -78,36 +78,3 @@ export const init = () => {
         return promise;
   };
 
-// import { SQLite } from 'expo-sqlite'
-// import DatabaseLayer from 'expo-sqlite-orm/src/DatabaseLayer'
- 
- 
-
-// import * as SQLite from 'expo-sqlite'
-// import { BaseModel, types } from 'expo-sqlite-orm'
- 
-// export default class Animal extends BaseModel {
-//   constructor(obj) {
-//     super(obj)
-//   }
- 
-//   static get database() {
-//     return async () => SQLite.openDatabase('database.db')
-//   }
- 
-//   static get tableName() {
-//     return 'animals'
-//   }
- 
-//   static get columnMapping() {
-//     return {
-//       id: { type: types.INTEGER, primary_key: true }, // For while only supports id as primary key
-//       //name: { type: types.TEXT, not_null: true },
-//       color: { type: types.TEXT },
-//       //age: { type: types.NUMERIC },
-//       another_uid: { type: types.INTEGER, unique: true },
-//       timestamp: { type: types.INTEGER, default: () => Date.now() }
-//     }
-//   }
-   
-// }
