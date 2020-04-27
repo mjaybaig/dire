@@ -12,6 +12,7 @@ import MachineDetailScreen from "../Screens/MachineDetailScreen"
 import CameraScreen from "../Screens/CameraScreen"
 import HospitalScreen from "../Screens/HospitalScreen"
 import ShowDirectionScreen from '../components/ShowDirectionScreen'
+import MachinePrecautions from "../Screens/MachinePrecautions";
 import Colors from "../constants/Color"
 
 const defaultStackOption = {
@@ -30,7 +31,8 @@ const DireNavigator = createStackNavigator({
     MachineDetail : MachineDetailScreen,
     Camera:CameraScreen,
     Hospitals:HospitalScreen,
-    ShowDirection:ShowDirectionScreen
+    ShowDirection:ShowDirectionScreen,
+    MachinePrecautions: MachinePrecautions
 
 },{
     defaultNavigationOptions: defaultStackOption
@@ -68,17 +70,17 @@ const TabsScreenConfig = {
       // convienece
       tabBarIcon: tabInfo => {return (<Ionicons name="ios-home"size={20}color={tabInfo.tintColor } />);
       },
-      tabBarColor: Colors.primaryColor
+      tabBarColor: Colors.hedTint
     }
   },
-  Lsit: {
+  List: {
     screen: TabListNavigator,
     navigationOptions: {
       // tabinfo will diynamically get the collor from tabBarOption using it for my
       // convienece
       tabBarIcon: tabInfo => {return (<Ionicons name="ios-list"size={20}color={tabInfo.tintColor } />);
       },
-      tabBarColor: Colors.primaryColor
+      tabBarColor: Colors.hedTint
     }
   },
   Camera: {
@@ -88,7 +90,7 @@ const TabsScreenConfig = {
       tabBarIcon: tabInfo => {
         return (<Ionicons name="ios-camera" size={20}color={tabInfo.tintColor} />);
       },
-      tabBarColor: Colors.accentColor
+      tabBarColor: Colors.hedTint
     }
   },
   Hospital: {
@@ -97,7 +99,7 @@ const TabsScreenConfig = {
       tabBarIcon: tabInfo => {
         return (<MaterialCommunityIcons name="hospital" size={25}color={tabInfo.tintColor} />);
       },
-      tabBarColor: Colors.accentColor
+      tabBarColor: Colors.hedTint
     }
   },
   // will be implemnting in iteration 2
@@ -133,7 +135,7 @@ const DireTabNavigator = Platform.OS == "android"
  }) : createBottomTabNavigator(TabsScreenConfig,
   { // customization of how the Tab bar
   tabBarOptions: {
-    activeTintColor: Colors.accentColor
+    activeTintColor: "Colors.accentColor"
   }
 });
 

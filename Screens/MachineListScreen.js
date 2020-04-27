@@ -87,21 +87,41 @@ export default class MachineListScreen extends Component {
     //Flatlist gives us the item property
     // KeyExtractor (unique id maping) is not required for the latest verstion of react
     //using it for my refrence
-   return (  
-    <FlatList 
-    ListHeaderComponent = {this.renderHeader}
-    style = {styles.back}
-   // keyExtractor={(item, index) => item.id} 
-    data={this.state.data}
-    renderItem={renderGridItem}
-    numColumns={1}
-    ListFooterComponent={this.renderFooter}
-  />
+   return ( 
+       this.state.data.length > 0 ? (
+           <FlatList 
+           ListHeaderComponent = {this.renderHeader}
+           style = {styles.back}
+          // keyExtractor={(item, index) => item.id} 
+           data={this.state.data}
+           renderItem={renderGridItem}
+           numColumns={1}
+           ListFooterComponent={this.renderFooter}
+           />
+           ) : (
+               <View>
+                   <FlatList 
+                   ListHeaderComponent = {this.renderHeader}
+                   style = {styles.back}
+                  // keyExtractor={(item, index) => item.id} 
+                   data={[]}
+                   renderItem={renderGridItem}
+                   numColumns={1}
+                   ListFooterComponent={this.renderFooter}
+                   />
+                    <Text style={styles.nomatch}>No match found. We are still in the process of adding machines</Text>
+               </View>
+           ) 
 ) 
 }}
 
 const styles = StyleSheet.create({
-back:{
-    backgroundColor:"white"
-}
+    back:{
+        backgroundColor:"white"
+    },
+    nomatch: {
+        textAlign: "center",
+        textAlignVertical: "center",
+        fontSize: 15
+    }
 })

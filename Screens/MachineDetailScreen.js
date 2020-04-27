@@ -9,17 +9,18 @@ export default class MachineDetailScreen extends Component {
    const catId = this.props.navigation.getParam("categoryId")
    const selectedCategory = MACHINECATEGORY.find(cat => cat.id == catId)
    return(
-<View>
-<Image source = {{uri: selectedCategory.imageUrl}} style={styles.image}/>
-
-<Text style = {styles.title}>Description</Text>
-<Text> 
-</Text>
-<Text style = {styles.title}>Common Injuries</Text>
-<Text > 
- </Text>
-
-</View>
+<ScrollView>
+      <View>
+        <Image
+          source={{ uri: selectedCategory.imageUrl }}
+          style={styles.image}
+        />
+        <Text style={styles.title}>Description</Text>
+        <Text>{selectedCategory.desc}</Text>
+        <Text style={styles.title}>Common Injuries</Text>
+      {selectedCategory.comInjury.map(cat => <Text key={cat}>{cat}</Text>)}
+      </View>
+      </ScrollView>
    )
    }
 }

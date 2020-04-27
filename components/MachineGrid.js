@@ -3,6 +3,7 @@ import { TouchableOpacity, View, Text, StyleSheet,ImageBackground } from "react-
 import Colors from '../constants/Color'
   export default class MachineGrid extends Component{
     render(){
+      console.log(this.props);
     //creating a toucable screen and passing information to map list screen 
     return (
     <TouchableOpacity style={styles.gridItem} onPress={this.props.onSelect}>

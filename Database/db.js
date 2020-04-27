@@ -40,7 +40,7 @@ export const init = () => {
               '5a','farm-slasher','adgv','#F3BA36',
               '6a','quad-bike','adgv','#F3BA36'],
               (_, res) => {
-                console.log(res)
+                // console.log(r  es)
                 resolve(res);
               },
               (_, err) => {
@@ -65,7 +65,7 @@ export const init = () => {
                 if(len >0){
                   for(let i =0 ; i< len; i++){
                     let row = result.rows.item(i)
-                    console.log(row)
+                    // console.log(row)
                  }
                  }
               },

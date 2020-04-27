@@ -118,7 +118,18 @@ class CameraScreen extends React.Component{
         />
         {!this.state.whichMachine ? (
           <Text></Text>
-        ):(<Text>{this.state.whichMachine}</Text>)}
+        ):(<Button 
+              title={this.state.whichMachine}
+              color={Colors.accentColor}
+              onPress={() => {
+                console.log("Navigate");
+                this.props.navigation.navigate({
+                  routeName: 'MachinePrecautions',
+                  params: {
+                    categoryId: parseInt(this.state.whichMachine.substr(0, 1))
+                  }
+                })
+              }} />)}
     </View>
   );
 }
