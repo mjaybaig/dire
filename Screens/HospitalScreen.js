@@ -24,7 +24,6 @@ export default class  HospitalScreen extends Component{
        //continusoly get positon from user and stoping this dismount happens
        Geolocation.watchPosition(
            pos =>{
-                console.log(pos)
                 this.setState({
                     userLatitude: pos.coords.latitude,
                     userLongitude: pos.coords.longitude,
