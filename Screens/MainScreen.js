@@ -3,21 +3,39 @@ import { View, Text, StyleSheet, Button, FlatList ,TouchableOpacity,ImageBackgro
 
 import MenueItem from '../components/menuItem'
 
+
 export default class MainScreen extends Component{
+    constructor(props){
+        super(props);
+        this.screens = ['MachineList', 'Camera', 'Hospitals']
+    }
     render(){
     //calling menue item to get format with image to diplay here
-        return(
+    return(
         <View style ={styles.overlayContainer}>
         <View style = {styles.top}>
-        <Text style = {styles.header}> H O M E</Text>
+        <Text style = {styles.header}>D I R E</Text>
         </View>
         <View style={styles.menueContainer}>
-            <MenueItem/>
-            <MenueItem/>
-            <MenueItem/>
-            <MenueItem/>
-            <MenueItem/>
-            <MenueItem/>
+            <MenueItem icon = 'tractor'
+                onSelect = {() => {
+                this.props.navigation.navigate({
+                    routeName: "MachineList"
+                })
+            }}>
+            </MenueItem>
+            <MenueItem icon='camera'
+                onSelect = {() => {
+                this.props.navigation.navigate({
+                    routeName: "Camera",
+                })
+            }}/>
+            <MenueItem icon='hospital'
+                onSelect = {() => {
+                this.props.navigation.navigate({
+                    routeName: "Hospitals",
+                })
+            }}/>
         </View>
         </View>
     )

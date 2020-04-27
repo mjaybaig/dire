@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { View, Text, StyleSheet, Button, FlatList ,TouchableOpacity,Platform,Image} from "react-native";
+import { View, Text, StyleSheet, Button, FlatList ,TouchableOpacity,Platform,Image, ScrollView} from "react-native";
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs'
 import MACHINECATEGORY from "../data/machineDetail"
 
@@ -18,7 +18,10 @@ export default class MachineDetailScreen extends Component {
         <Text style={styles.title}>Description</Text>
         <Text>{selectedCategory.desc}</Text>
         <Text style={styles.title}>Common Injuries</Text>
-      {selectedCategory.comInjury.map(cat => <Text key={cat}>{cat}</Text>)}
+          {selectedCategory.comInjury.map(cat => <Text key={cat}>{cat}</Text>)}
+         <Button title="More Info" onPress = {() => {
+            this.props.navigation.navigate({routeName: 'MachinePrecautions', params: {categoryId: selectedCategory.id}})
+         }}/>
       </View>
       </ScrollView>
    )

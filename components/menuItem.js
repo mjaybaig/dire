@@ -1,14 +1,24 @@
 import React,{Component} from 'react'
-import {View,Image,StyleSheet} from 'react-native'
+import {View,Image,StyleSheet, TouchableOpacity, Text} from 'react-native'
+import {Icon} from 'react-native-elements'
+
 
 export default class MenuItem extends Component {
+    constructor(props){
+        super(props);
+    }
     render(){
+        console.log("NN", this.props.navigation)
         //return custom style imtes to main screen
         return(
-            <View style = {styles.menuItem}>
-            <Image source = {this.props.itemImage}
-            style={styles.image}/>
+            <TouchableOpacity style = {styles.menuItem} onPress={this.props.onSelect}>
+            <View>
+                {/* <Text>Hello</Text> */}
+            <Icon name={this.props.icon} type='material-community' size={60}/>
+            {/* <Icon  source = {this.props.itemImage}
+            style={styles.image}/> */}
             </View>
+            </TouchableOpacity>
         )
     }
 }

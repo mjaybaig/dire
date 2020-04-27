@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { View, Text, StyleSheet, Button, FlatList, ActivityIndicator} from "react-native";
+import { View, Text, StyleSheet, Button, FlatList, ActivityIndicator, TouchableWithoutFeedback, Keyboard} from "react-native";
 import {SearchBar} from "react-native-elements";
 import _ from 'lodash'
 
@@ -16,6 +16,9 @@ export default class MachineListScreen extends Component {
             loading: false,
             error: null,
         }
+    }
+    hideKeyboard(){
+        Keyboard.dismiss()
     }
     //will load every time
      componentDidMount(){
@@ -89,27 +92,34 @@ export default class MachineListScreen extends Component {
     //using it for my refrence
    return ( 
        this.state.data.length > 0 ? (
-           <FlatList 
-           ListHeaderComponent = {this.renderHeader}
-           style = {styles.back}
-          // keyExtractor={(item, index) => item.id} 
-           data={this.state.data}
-           renderItem={renderGridItem}
-           numColumns={1}
-           ListFooterComponent={this.renderFooter}
-           />
+           <View>
+
+           <TouchableWithoutFeedback onPress={this.hideKeyboard}>
+               <FlatList 
+               ListHeaderComponent = {this.renderHeader}
+               style = {styles.back}
+               // keyExtractor={(item, index) => item.id} 
+               data={this.state.data}
+               renderItem={renderGridItem}
+               numColumns={1}
+               ListFooterComponent={this.renderFooter}
+               />
+           </TouchableWithoutFeedback>
+               </View>
            ) : (
                <View>
-                   <FlatList 
-                   ListHeaderComponent = {this.renderHeader}
-                   style = {styles.back}
-                  // keyExtractor={(item, index) => item.id} 
-                   data={[]}
-                   renderItem={renderGridItem}
-                   numColumns={1}
-                   ListFooterComponent={this.renderFooter}
-                   />
-                    <Text style={styles.nomatch}>No match found. We are still in the process of adding machines</Text>
+                    <TouchableWithoutFeedback onPress={this.hideKeyboard}>
+                        <FlatList 
+                        ListHeaderComponent = {this.renderHeader}
+                        style = {styles.back}
+                        // keyExtractor={(item, index) => item.id} 
+                        data={[]}
+                        renderItem={renderGridItem}
+                        numColumns={1}
+                        ListFooterComponent={this.renderFooter}
+                        />
+            </TouchableWithoutFeedback>
+                        <Text style={styles.nomatch}>No match found. We are still in the process of adding machines</Text>
                </View>
            ) 
 ) 
