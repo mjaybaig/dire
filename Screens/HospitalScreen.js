@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet,Keyboard,TouchableWithoutFeedback,TouchableOpacity,ScrollView} from "react-native";
+import { View, Text, StyleSheet,Keyboard,TouchableWithoutFeedback,TouchableOpacity,ScrollView, Button} from "react-native";
 import MapView from 'react-native-maps'
 import axios from "axios"
 import googleKey from "../env"
 import ShowDirectionScreen from "../components/ShowDirectionScreen"
 import Geolocation from 'react-native-geolocation-service'
-
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export default class  HospitalScreen extends Component{
    constructor(props){
@@ -97,22 +97,25 @@ export default class  HospitalScreen extends Component{
         // const combine = [...this.state.mapDetailResult, ...this.state.distanceResult]
             const displayMapDetail = this.state.mapDetailResult.map((m,i) => {
             return(
-            <TouchableOpacity key ={i} 
+            <TouchableOpacity key ={i}>
+            <View style = {styles.gridItem}>
+            <View  style = {styles.sugestStyle} >
+            <Text style={styles.textStyle}>Name:</Text>
+            <Text style = {styles.MainTextStyle}>{m.name}</Text>
+            <Text style={styles.textStyle}>Phone Number</Text>
+            <Text style = {styles.MainTextStyle}>{m.formatted_phone_number}</Text>
+            <Text style={styles.textStyle}>Rating:</Text>
+            <Text style = {styles.MainTextStyle}>{m.rating}</Text>
+            <Button title = "Direction"
             onPress={() => {
                 this.props.navigation.navigate({
-                    routeName:"ShowDirection",
-                    params:{
-                        placeId: m.place_id
-                    }
-                })
-            }}>
-            <View  style = {styles.sugestStyle} >
-            <Text style={{fontWeight: "bold",paddingBottom:3}}>Name:</Text>
-            <Text style = {styles.MainTextStyle}>{m.name}</Text>
-            <Text style={{fontWeight: "bold",paddingBottom:3}}>Phone Number</Text>
-            <Text style = {styles.MainTextStyle}>{m.formatted_phone_number}</Text>
-            <Text style={{fontWeight: "bold",paddingBottom:3}}>Rating:</Text>
-            <Text style = {styles.MainTextStyle}>{m.rating}</Text>
+                  routeName: "ShowDirection",
+                  params: {
+                    placeId: m.place_id,
+                  },
+                });
+            }} />
+            </View>
             </View>
             </TouchableOpacity>
             )
@@ -167,13 +170,38 @@ const styles = StyleSheet.create({
     map:{
         ...StyleSheet.absoluteFillObject
     },
+    gridItem: {
+        flex: 1,
+        marginTop:10,
+        marginBottom: 10,
+        marginLeft: 10,
+        marginRight:10,
+        height: 200,
+      },
     sugestStyle:{
-        backgroundColor:"white",
-        padding:5,
-        borderTopWidth:1,
-        borderColor:"#777",
-        padding:20,
-        borderWidth:1
+        flex: 1,
+        padding: 10,
+        borderRadius: 5,
+        shadowColor: "black",
+        shadowOpacity: 0.5,
+        shadowOffset: { width: 0, height: 10 },
+        shadowRadius: 6,
+        elevation: 3,
+        backgroundColor:"#FAE5B6"
+
+       
+        // backgroundColor:"white",
+        // padding:5,
+        // borderTopWidth:1,
+        // borderColor:"#777",
+        // padding:20,
+        // borderWidth:1
+    },
+    textStyle:{
+        fontWeight: "bold",
+        paddingBottom:3,
+        color:"black",
+        opacity:1
     },
     secondaryStyle:{
         color:"#777"

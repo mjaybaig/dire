@@ -10,14 +10,17 @@ import MainScreen from "../Screens/MainScreen"
 import MachineListScreen from "../Screens/MachineListScreen"
 import MachineDetailScreen from "../Screens/MachineDetailScreen"
 import CameraScreen from "../Screens/CameraScreen"
-import HospitalScreen from "../Screens/HospitalScreen"
+import HospitalScreen from "../Screens/HospitalScreen";
 import ShowDirectionScreen from '../components/ShowDirectionScreen'
 import MachinePrecautions from "../Screens/MachinePrecautions";
 import Colors from "../constants/Color"
+import { Title } from "react-native-paper";
 
 const defaultStackOption = {
   headerStyle:{
-    backgroundColor: Colors.hedTint
+    backgroundColor: Colors.hedTint,
+   
+
     // Platform.OS === "android" ?Colors.primaryColor: ""
   },
   headerTintColor:"white"
@@ -42,6 +45,8 @@ const DireNavigator = createStackNavigator({
 const TabListNavigator = createStackNavigator({
   MachineList: MachineListScreen,
   MachineDetail : MachineDetailScreen,
+  MachinePrecautions: MachinePrecautions
+
 
 },{
   defaultNavigationOptions: defaultStackOption
