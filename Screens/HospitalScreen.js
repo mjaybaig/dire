@@ -5,11 +5,8 @@ import axios from "axios"
 import googleKey from "../env"
 import ShowDirectionScreen from "../components/ShowDirectionScreen"
 import Geolocation from 'react-native-geolocation-service'
-<<<<<<< HEAD
 import { Rating } from "react-native-elements";
-=======
 import { Colors } from "react-native/Libraries/NewAppScreen";
->>>>>>> 1d34fef190bb324544d46ef09c7535e989630242
 
 export default class  HospitalScreen extends Component{
    constructor(props){
