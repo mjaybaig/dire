@@ -86,8 +86,7 @@ class CameraScreen extends React.Component{
               if(err){
                 console.log(err)
               }
-              else{
-
+              else{                
                   this.setState({
                     whichMachine: res[0].label
                   });
@@ -105,11 +104,15 @@ class CameraScreen extends React.Component{
       <View style={this.styles.imagePicker}>
       <View style={this.styles.imagePreview}>
         {!this.state.pickedImage ? (
-          <Text>No image picked yet.</Text>
+          // <View>
+            <Text>Tap the button below to take a picture of your equipment</Text>
+            // <Text>Select "Take Image" below and take a picture of your machine/equipment.</Text>
+          // </View>
           ) : (
             <Image style={this.styles.image} source={{ uri: this.state.pickedImage.uri }} />
             )}
       </View>
+      
       <Button
         title="Take Image"
         color={Colors.primary}
@@ -140,7 +143,7 @@ styles = StyleSheet.create({
     },
     imagePreview: {
       width: '100%',
-      height: 400,
+      height: 350,
       marginBottom: 10,
       justifyContent: 'center',
       alignItems: 'center',

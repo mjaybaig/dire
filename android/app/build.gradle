@@ -10,10 +10,10 @@ import com.android.build.OutputFile
  * bundle directly from the development server. Below you can see all the possible configurations
  * and their defaults. If you decide to add a configuration block, make sure to add it before the
  * `apply from: "../../node_modules/react-native/react.gradle"` line.
- *
- * project.ext.react = [
- *   // the name of the generated asset file containing your JS bundle
- *   bundleAssetName: "index.android.bundle",
+ */
+    project.ext.react = [
+     // the name of the generated asset file containing your JS bundle
+ /*   bundleAssetName: "index.android.bundle",
  *
  *   // the entry file for bundle generation
  *   entryFile: "index.android.js",
@@ -21,9 +21,9 @@ import com.android.build.OutputFile
  *   // https://facebook.github.io/react-native/docs/performance#enable-the-ram-format
  *   bundleCommand: "ram-bundle",
  *
- *   // whether to bundle JS and assets in debug mode
- *   bundleInDebug: false,
- *
+     // whether to bundle JS and assets in debug mode
+ */   bundleInDebug: false,
+ /*
  *   // whether to bundle JS and assets in release mode
  *   bundleInRelease: true,
  *
@@ -72,8 +72,8 @@ import com.android.build.OutputFile
  *
  *   // supply additional arguments to the packager
  *   extraPackagerArgs: []
- * ]
- */
+ */ ]
+ 
 
 project.ext.react = [
     entryFile: "index.js",
@@ -137,7 +137,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.dreamit.dire"
+        applicationId "com.dire"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

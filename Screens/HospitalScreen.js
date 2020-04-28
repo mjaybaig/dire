@@ -5,7 +5,7 @@ import axios from "axios"
 import googleKey from "../env"
 import ShowDirectionScreen from "../components/ShowDirectionScreen"
 import Geolocation from 'react-native-geolocation-service'
-
+import { Rating } from "react-native-elements";
 
 export default class  HospitalScreen extends Component{
    constructor(props){
@@ -112,7 +112,8 @@ export default class  HospitalScreen extends Component{
             <Text style={{fontWeight: "bold",paddingBottom:3}}>Phone Number</Text>
             <Text style = {styles.MainTextStyle}>{m.formatted_phone_number}</Text>
             <Text style={{fontWeight: "bold",paddingBottom:3}}>Rating:</Text>
-            <Text style = {styles.MainTextStyle}>{m.rating}</Text>
+            {/* <Text style = {styles.MainTextStyle}>{m.rating}</Text> */}
+            <Rating imageSize={8} readonly startingValue={m.rating}/>
             </View>
             </TouchableOpacity>
             )
