@@ -1,14 +1,23 @@
 import React,{Component} from "react";
 import { TouchableOpacity, View, Text, StyleSheet,ImageBackground } from "react-native";
 import Colors from '../constants/Color'
+import {Card,Title,Avatar} from 'react-native-paper'
   export default class MachineGrid extends Component{
     render(){
       console.log(this.props);
+      const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+
     //creating a toucable screen and passing information to map list screen 
     return (
     <TouchableOpacity style={styles.gridItem} onPress={this.props.onSelect}>
-      <View
-        style={{ ...styles.container, ...{ backgroundColor: Colors.hedTint } }}>
+      {/* <Card>
+     <Card.Title title={this.props.title} left={LeftContent} />
+      <Card.Content>
+      </Card.Content>
+      <Card.Cover source= {{uri:this.props.image}}/>
+      </Card> */}
+      
+      <View style = {styles.container}>
       <ImageBackground source = {{uri: this.props.image}} style = {styles.bgImage}>
         <Text style={styles.title}>{this.props.title}</Text>
         </ImageBackground>
@@ -17,30 +26,45 @@ import Colors from '../constants/Color'
   );
   }};
 
+
+  // <Card>
+  //   <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
+  //   <Card.Content>
+  //     <Title>Card title</Title>
+  //     <Paragraph>Card content</Paragraph>
+  //   </Card.Content>
+  //   <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+  //   <Card.Actions>
+  //     <Button>Cancel</Button>
+  //     <Button>Ok</Button>
+  //   </Card.Actions>
+  // </Card>
+
 const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
-    margin: 15,
+    marginBottom: 18,
+    marginLeft: 6,
+    marginRight:6,
     height: 200
   },
   container: {
     flex: 1,
     borderRadius: 5,
     shadowColor: "black",
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 10,
+    shadowOpacity: 0.5,
+    shadowOffset: { width: 0, height: 10 },
+    shadowRadius: 6,
     elevation: 3,
-    padding: 15,
+    padding: 10,
     justifyContent: "flex-end",
     alignItems: "flex-end"
   },
   title: {
     //fontFamily: "open-sans-bold",
-    fontSize: 22,
     textAlign: "right",
-    fontSize: 20,
-    color:"white",
+    fontSize: 18,
+    color:Colors.hedTint,
     //color with built in transparency
     backgroundColor: "rgba(0,0,0,0.7)",
     paddingVertical : 5,

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Button, FlatList ,TouchableOpacity,ImageBackground} from "react-native";
+import { View, Text, StyleSheet, Image} from "react-native";
 
 import MenueItem from '../components/menuItem'
 
@@ -14,10 +14,13 @@ export default class MainScreen extends Component{
     return(
         <View style ={styles.overlayContainer}>
         <View style = {styles.top}>
-        <Text style = {styles.header}>D I R E</Text>
+        <Image source={require("../Images/MainScreenImage.png")} style={styles.mainImage}/>
+
+        
         </View>
         <View style={styles.menueContainer}>
             <MenueItem icon = 'tractor'
+            iconName = "Machine List"
                 onSelect = {() => {
                 this.props.navigation.navigate({
                     routeName: "MachineList"
@@ -25,12 +28,15 @@ export default class MainScreen extends Component{
             }}>
             </MenueItem>
             <MenueItem icon='camera'
+            iconName = "Machine Recognistion"
+
                 onSelect = {() => {
                 this.props.navigation.navigate({
                     routeName: "Camera",
                 })
             }}/>
             <MenueItem icon='hospital'
+                iconName ="Near By Hospitals"
                 onSelect = {() => {
                 this.props.navigation.navigate({
                     routeName: "Hospitals",
@@ -42,6 +48,13 @@ export default class MainScreen extends Component{
     
 }}
 
+
+MainScreen.navigationOptions = (navigationData) =>{
+    return {
+        headerTitle: 'Welcome To Dire'
+    }
+ }
+
 const styles = StyleSheet.create({
     overlayContainer:{
         flex:1,
@@ -52,15 +65,19 @@ const styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
     },
+    mainImage:{
+        width:"100%",
+        height:"100%"
+    },
     header: {
         color: "#F3BA36",
         fontSize: 28,
-        borderColor:"#F3BA36",
-        borderWidth:2,
-        padding:20,
-        paddingLeft:40,
-        paddingRight:40,
-        backgroundColor:'rgba(255,255,255, 0.1)',
+        //borderColor:"#F3BA36",
+        //borderWidth:2,
+        //padding:20,
+        //paddingLeft:40,
+       // paddingRight:40,
+       // backgroundColor:'rgba(255,255,255, 0.8)',
     },
     menueContainer:{
         height:"40%",

@@ -14,7 +14,8 @@ export default class MenuItem extends Component {
             <TouchableOpacity style = {styles.menuItem} onPress={this.props.onSelect}>
             <View>
                 {/* <Text>Hello</Text> */}
-            <Icon name={this.props.icon} type='material-community' size={60}/>
+            <Icon name={this.props.icon} type='material-community' size={60} opacity={0.6}/>
+            <Text style = {styles.nameIcon}>{this.props.iconName}</Text>
             {/* <Icon  source = {this.props.itemImage}
             style={styles.image}/> */}
             </View>
@@ -25,19 +26,23 @@ export default class MenuItem extends Component {
 
 const styles = StyleSheet.create({
     menuItem: {
-        width:'33.3333333%',
+        width:'33.333333333%',
         height:"50%",
-        padding:20,
+        padding:10,
         backgroundColor:'#F3BA36',
-        opacity:0.4,
+        //opacity:0.5,
         borderColor:"white",
         borderWidth:2,
     },
     image:{
-        width:'100%',
-        height:'100%',
-        opacity:0.8,
+       // width:'100%',
+        //height:'100%',
+        opacity:0.3,
         //borderColor:"#F3BA36",
         //borderWidth:3
+    },
+    nameIcon:{
+        fontSize: 15,
+        textAlign:'center'        
     }
 })
