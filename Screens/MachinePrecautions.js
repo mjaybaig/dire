@@ -13,6 +13,7 @@ export default class MachinePrecautions extends Component {
             selectedCategory: null
         }
     }
+    
     componentDidMount(){
         this.setState({
             catId: this.props.navigation.getParam("categoryId"),

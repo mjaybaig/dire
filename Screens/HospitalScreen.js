@@ -132,6 +132,7 @@ export default class  HospitalScreen extends Component{
         //console.log(this.state.userLongitude)
     const mapRegion = {
         //points and surface
+        
         latitude: this.state.userLatitude,
         longitude: this.state.userLongitude,
         latitudeDelta: 0.0922,
