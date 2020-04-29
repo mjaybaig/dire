@@ -19,6 +19,13 @@ import MachineCategory from '../models/machineCategory';
        "Do not carry passengers on tractors that do not have instructional seats,ROPS and safety belts",
        "Ensure Power take off(PTO) shaft and connections are guarded and keep clear when it is engageg",
        "Never jump on or off a moving tractor"
+      ],
+      [
+        "Tractors over 560kg should have a ROPS-compliant cabin",
+        "You must wear a seatbelt to avoid being thrown out of the tractor",
+        "Fit a long, plastic (non-conductive) flexible pole in front of the tractor to warn you of unnoticed hazards",
+        "While working, establish a safe work zone and exclude by-standers from the work area",
+        "Never start or operate the tractor from the ground"
       ]
    ),
    new MachineCategory(
