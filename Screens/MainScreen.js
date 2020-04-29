@@ -80,9 +80,9 @@ const styles = StyleSheet.create({
        // backgroundColor:'rgba(255,255,255, 0.8)',
     },
     menueContainer:{
-        height:"40%",
-        flexDirection:'row',
-        flexWrap:'wrap',
+        height:"50%",
+        flexDirection:'column',
+        // flexWrap:'wrap',
 
     }
 })
