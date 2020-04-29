@@ -22,6 +22,7 @@ import MachineCategory from '../models/machineCategory';
        "Never jump on or off a moving tractor"
       ],
       [
+        
         "Call 1100 to find location of underground power cables to avoid electrocution",
         "Tractors over 560kg should have a ROPS-compliant cabin",
         "You must wear a seatbelt to avoid being thrown out of the tractor",

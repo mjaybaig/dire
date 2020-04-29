@@ -1,10 +1,12 @@
 import React, {Component} from "react";
-import { View, Text, StyleSheet, Button, FlatList ,TouchableOpacity,Platform,Image, ScrollView} from "react-native";
+import { View, Text, StyleSheet, FlatList ,TouchableOpacity,Platform,Image, ScrollView} from "react-native";
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs'
 import MACHINECATEGORY from "../data/machineDetail"
 import { pad } from "@tensorflow/tfjs";
-import {Icon} from 'react-native-elements'
+import {Icon, ListItem} from 'react-native-elements'
 import Colors from "../constants/Color"
+import { Button } from "react-native-paper";
+import Color from "../constants/Color";
 
 export default class MachineDetailScreen extends Component {
    render(){
@@ -20,9 +22,16 @@ export default class MachineDetailScreen extends Component {
         <Text style={styles.title}>Description</Text>
         <Text style={styles.txtStyles}>{selectedCategory.desc}</Text>
         <Text></Text>
-        <Text></Text>
         <Text style={styles.title}>Common Injuries</Text>
-          {selectedCategory.comInjury.map(cat => <Text style={styles.txtStyles} key={cat}>{cat}</Text>)}
+        
+          {
+            selectedCategory.comInjury.map(cat =>  <ListItem bottomDivider style={styles.txtStyles} key={cat} title={cat}/>)}
+          <Button onPress={
+             () => {
+               this.props.navigation.navigate({routeName: 'MachinePrecautions', 
+               params: {categoryId: selectedCategory.id}})
+            }
+          } style={{alignSelf:"center", width: '30%', marginBottom: 5}} mode="contained" color={Color.hedTint}>More</Button>
       </View>
       </ScrollView>
    )
@@ -40,9 +49,6 @@ MachineDetailScreen.navigationOptions = (navigationData) =>{
             navigationData.navigation.navigate({routeName: 'MachinePrecautions', 
             params: {categoryId: selectedCategory.id}})
          }}>
-            <View style={styles.headerText}>
-            <Text style={{color:"black",fontWeight:"bold",fontSize:18,padding:5}} >More</Text><Icon name="arrow-right" type='material-community' color="black"/>
-            </View>
            </TouchableOpacity>),
         headerTitle: selectedCategory.title 
       }
