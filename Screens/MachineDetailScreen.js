@@ -22,16 +22,16 @@ export default class MachineDetailScreen extends Component {
         <Text style={styles.title}>Description</Text>
         <Text style={styles.txtStyles}>{selectedCategory.desc}</Text>
         <Text></Text>
-        <Text style={styles.title}>Common Injuries</Text>
+        <Text style={styles.title}>Risks</Text>
         
           {
             selectedCategory.comInjury.map(cat =>  <ListItem bottomDivider style={styles.txtStyles} key={cat} title={cat}/>)}
-          <Button onPress={
+          {/* <Button onPress={
              () => {
                this.props.navigation.navigate({routeName: 'MachinePrecautions', 
                params: {categoryId: selectedCategory.id}})
             }
-          } style={{alignSelf:"center", width: '30%', marginBottom: 5}} mode="contained" color={Color.hedTint}>More</Button>
+          } style={{alignSelf:"center", width: '30%', marginBottom: 5}} mode="contained" color={Color.hedTint}>More</Button> */}
       </View>
       </ScrollView>
    )
@@ -49,8 +49,13 @@ MachineDetailScreen.navigationOptions = (navigationData) =>{
             navigationData.navigation.navigate({routeName: 'MachinePrecautions', 
             params: {categoryId: selectedCategory.id}})
          }}>
+             <View style={styles.headerText}>
+            <Text style={{color:"black",fontWeight:"bold",fontSize:18,padding:5}}>More</Text><Icon name="arrow-right" type='material-community' color="black"/>
+            </View>
            </TouchableOpacity>),
         headerTitle: selectedCategory.title 
+      //      </TouchableOpacity>),
+      //   headerTitle: selectedCategory.title 
       }
 }
 

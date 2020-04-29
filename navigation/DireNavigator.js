@@ -141,7 +141,8 @@ const DireTabNavigator = Platform.OS == "android"
   { // customization of how the Tab bar
   tabBarOptions: {
     // activeTintColor: "black"
-    activeTintColor: "Colors.accentColor"
+    // activeTintColor: "Colors.accentColor",
+    tintColor: "black"
   }
 });
 

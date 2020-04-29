@@ -115,20 +115,7 @@ class CameraScreen extends React.Component{
       <View style={this.styles.imagePicker}>
         <View style={this.styles.imagePreview}>
           {!this.state.whichMachineName ? (
-            // <Card>
-            //   <Card.Content>
-            //     <Text>Tap the button below to take a picture of your machine</Text>
-            //   </Card.Content>
-            //   <Card.Actions>
-            //     <Button 
-            //       mode="contained" 
-            //       icon="camera" 
-            //       color={Color.hedTint} 
-            //       uppercase={false} 
-            //       onPress={this.takeImageHandler}
-            //       compact>Take Picture</Button>
-            //   </Card.Actions>
-            // </Card>
+
             <View style={{alignItems: "center"}}>
 
               <IconButton
