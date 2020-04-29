@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 // import { View, Text, StyleSheet, Button, FlatList ,TouchableOpacity,Platform,Image} from "react-native";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { Card, Icon, Button, Text, Image, ListItem } from "react-native-elements";
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs'
 import MACHINECATEGORY from "../data/machineDetail"
@@ -28,44 +28,47 @@ export default class MachinePrecautions extends Component {
         // console.log(this.selectedCategory.imageUrl);
         // console.log(this.state)
         return(
-            <View>
+            <ScrollView>
+
                 {
                     this.selectedCategory &&
-                <Card title={this.selectedCategory.title}>
+                    <Card title={this.selectedCategory.title}>
 
-                        <Image source={{uri: this.selectedCategory.imageUrl}}/>
+                        {/* <Image source={{uri: this.selectedCategory.imageUrl}}/> */}
 
-                        {this.selectedCategory.risk.map((l, i) => {
+                        {this.selectedCategory.precautions.map((l, i) => {
                             return <ListItem
-                                key={i}
-                                title={l} 
-                                bottomDivider/>
+                            key={i}
+                            title={l} 
+                            bottomDivider
+                            />
                         })}
                         {/* </Text> */}
                         {/* <Button
                         icon={<Icon name='code' color='#ffffff' />}
                         buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                        title='VIEW NOW' />     */}
+                    title='VIEW NOW' />     */}
                 </Card>
 
-                }
+}
                 {/* <Image source = {{uri: selectedCategory.imageUrl}} style={styles.image}/>
                 <Text style = {styles.title}>Description</Text>
                 <Text> 
                 </Text>
                 <Text style = {styles.title}>Common Injuries</Text>
                 <Text > 
-                </Text> */}
-            </View>
+            </Text> */}
+        </ScrollView>
+            // </View>
         )
     }
- }
- 
+}
+
 
  MachinePrecautions.navigationOptions = (navigationData) =>{
     const catId = navigationData.navigation.getParam("categoryId");
     return {
-        headerTitle: 'Risks'
+        headerTitle: 'Follow these guidelines to be safe'
     }
  }
  

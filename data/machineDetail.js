@@ -8,6 +8,7 @@ import MachineCategory from '../models/machineCategory';
      "https://images.unsplash.com/photo-1506092490682-b2cc6b651308?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
      "A tractor is a vehicle that's used on a farm or work site, often to pull a trailer or other equipment. A farmer might use a tractor to pull a plow through her corn field before planting. Tractors typically have two large wheels in back, and smaller wheels in front.",
      [
+       "Tractor extension could come in contact with power lines - electrocuting the operator",
        "Broken bones or fractures",
        "Turnovers: These caused about 60 people dead every year.",
        "Lacerations",
@@ -21,6 +22,7 @@ import MachineCategory from '../models/machineCategory';
        "Never jump on or off a moving tractor"
       ],
       [
+        "Call 1100 to find location of underground power cables to avoid electrocution",
         "Tractors over 560kg should have a ROPS-compliant cabin",
         "You must wear a seatbelt to avoid being thrown out of the tractor",
         "Fit a long, plastic (non-conductive) flexible pole in front of the tractor to warn you of unnoticed hazards",
@@ -45,7 +47,16 @@ import MachineCategory from '../models/machineCategory';
        "Risk due to No proper mounting and dismounting",
        "Lack of inspection and repairs",
        "Becoming entangled in machinery",
-     ]
+     ],
+     [
+       "Never use a bulldozer that has not been inspected pre-shift — fluid levels, brakes, signals, etc.",
+       "Be aware of changes on the work site that will affect safety, excavations, etc.",
+       "Call 1100 to find location of underground power cables to avoid electrocution",
+       "If there isn’t a specified hand or foot hold, don’t climb there",
+       "Always park on level ground",
+       "Bulldozers should be kept away from overhead power lines and water mains",
+       "There must never be passengers on the Bulldozer"
+      ]
    ),
    new MachineCategory(
      "3",
@@ -66,6 +77,13 @@ import MachineCategory from '../models/machineCategory';
        "Abrasions from sharp components (e.g. knives on balers and mowers)",
        "Loading and unloading hay bales (including stacking)",
        "Falling or collapsing hay bales. Workers and others (bystanders) can be placed at risk by falling or collapsing hay bales",
+     ],[
+       "Never feed the material into the baler with your hands or feet.",
+       "Never handfeed or remove twine from the machine while it is running.",
+       "When not in use, clean the baler to remove accumulated crop debris",
+       "When ejecting a bale, ensure the area behind the baler is clear before raising the tailgate. Do not eject on a downward slope as the bale may continue to roll.",
+       "Match belt lengths to prevent slippage that can cause blockages and heat build-up.",
+       "Ensure all guards are fitted, secure and functional. Do not operate if guards are missing or faulty."
      ]
    ),
    new MachineCategory(
@@ -106,6 +124,13 @@ import MachineCategory from '../models/machineCategory';
        "The quad bike flipping or rolling while negotiating a steep slope",
        "The quad bike hitting an obstacle and rolling over",
        "The rider being hit by a low-hanging obstacle, such as a branch",
+     ],
+     [
+       "Before Operation, inspect condition of blades, bolts, gearbox, shafts and rotors",
+       "Where practical, clear stones and rubbish from ground before starting to slash",
+       "The front and rear end of the slasher must be covered by a guard",
+       "When slashing on slopes, ensure wheels of tractor are on maximum width",
+       "Ensure area is clear of people"
      ]
    ),
  ];
