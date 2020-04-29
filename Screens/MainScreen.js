@@ -28,7 +28,7 @@ export default class MainScreen extends Component{
             }}>
             </MenueItem>
             <MenueItem icon='camera'
-            iconName = "Machine Recognistion"
+            iconName = "Machine Auto-Identify"
 
                 onSelect = {() => {
                 this.props.navigation.navigate({
