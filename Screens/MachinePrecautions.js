@@ -68,7 +68,7 @@ export default class MachinePrecautions extends Component {
  MachinePrecautions.navigationOptions = (navigationData) =>{
     const catId = navigationData.navigation.getParam("categoryId");
     return {
-        headerTitle: 'Follow these guidelines to be safe'
+        headerTitle: 'Safety Guidelines'
     }
  }
  

@@ -18,12 +18,11 @@ import { Title } from "react-native-paper";
 
 const defaultStackOption = {
   headerStyle:{
-    backgroundColor: Colors.hedTint,
-   
+    backgroundColor: Colors.hedTint
 
     // Platform.OS === "android" ?Colors.primaryColor: ""
   },
-  headerTintColor:"white"
+  headerTintColor:"black"
   //Platform.OS == "android" ? "white" : Colors.primaryColor
 }
 
@@ -36,25 +35,26 @@ const DireNavigator = createStackNavigator({
     Hospitals:HospitalScreen,
     ShowDirection:ShowDirectionScreen,
     MachinePrecautions: MachinePrecautions
-
-},{
+    
+  },{
     defaultNavigationOptions: defaultStackOption
-})
-
-//Bottom tab navigation when user clicks on list screen
-const TabListNavigator = createStackNavigator({
-  MachineList: MachineListScreen,
-  MachineDetail : MachineDetailScreen,
-  MachinePrecautions: MachinePrecautions
-
-
-},{
-  defaultNavigationOptions: defaultStackOption
-})
-
-//Bottom Tab navigation when user clicks on camera screen
-const TabCamNavigator = createStackNavigator({
-  Camera:CameraScreen,
+  })
+  
+  //Bottom tab navigation when user clicks on list screen
+  const TabListNavigator = createStackNavigator({
+    MachineList: MachineListScreen,
+    MachineDetail : MachineDetailScreen,
+    MachinePrecautions: MachinePrecautions
+    
+    
+  },{
+    defaultNavigationOptions: defaultStackOption
+  })
+  
+  //Bottom Tab navigation when user clicks on camera screen
+  const TabCamNavigator = createStackNavigator({
+    Camera:CameraScreen,
+    MachinePrecautions: MachinePrecautions
 
 },{
   defaultNavigationOptions: defaultStackOption
@@ -131,7 +131,7 @@ const TabsScreenConfig = {
 }
 const DireTabNavigator = Platform.OS == "android"
  ? createMaterialBottomTabNavigator(TabsScreenConfig, {
-   activeTintColor: 'white',
+   activeTintColor: 'black',
    shifting: true,
    //Set colour defualt for alll tabs
   //  barStyle:{
@@ -140,6 +140,7 @@ const DireTabNavigator = Platform.OS == "android"
  }) : createBottomTabNavigator(TabsScreenConfig,
   { // customization of how the Tab bar
   tabBarOptions: {
+    // activeTintColor: "black"
     activeTintColor: "Colors.accentColor"
   }
 });

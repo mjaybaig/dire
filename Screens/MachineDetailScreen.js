@@ -4,6 +4,7 @@ import {createMaterialTopTabNavigator} from 'react-navigation-tabs'
 import MACHINECATEGORY from "../data/machineDetail"
 import { pad } from "@tensorflow/tfjs";
 import {Icon} from 'react-native-elements'
+import Colors from "../constants/Color"
 
 export default class MachineDetailScreen extends Component {
    render(){
@@ -17,9 +18,11 @@ export default class MachineDetailScreen extends Component {
           style={styles.image}
         />
         <Text style={styles.title}>Description</Text>
-        <Text>{selectedCategory.desc}</Text>
+        <Text style={styles.txtStyles}>{selectedCategory.desc}</Text>
+        <Text></Text>
+        <Text></Text>
         <Text style={styles.title}>Common Injuries</Text>
-          {selectedCategory.comInjury.map(cat => <Text key={cat}>{cat}</Text>)}
+          {selectedCategory.comInjury.map(cat => <Text style={styles.txtStyles} key={cat}>{cat}</Text>)}
       </View>
       </ScrollView>
    )
@@ -38,7 +41,7 @@ MachineDetailScreen.navigationOptions = (navigationData) =>{
             params: {categoryId: selectedCategory.id}})
          }}>
             <View style={styles.headerText}>
-            <Text style={{color:"white",fontWeight:"bold",fontSize:18,padding:5}} >Rules</Text><Icon name="arrow-right" type='material-community' color="white"/>
+            <Text style={{color:"black",fontWeight:"bold",fontSize:18,padding:5}} >More</Text><Icon name="arrow-right" type='material-community' color="black"/>
             </View>
            </TouchableOpacity>),
         headerTitle: selectedCategory.title 
@@ -46,6 +49,9 @@ MachineDetailScreen.navigationOptions = (navigationData) =>{
 }
 
 const styles = StyleSheet.create({
+   txtStyles: {
+      fontSize: 16
+   },
    image:{
       width :'100%',
       height : 200
@@ -56,9 +62,13 @@ const styles = StyleSheet.create({
       justifyContent:"space-around"
     },
     title:{
-      fontSize:22,
+      fontSize:18,
       textAlign:'center',
-      padding:12
+      padding:5,
+      marginBottom:5,
+      fontWeight: "bold",
+      marginTop: 5,
+      backgroundColor: "#F3BA36"
     },
     headerText:{
       fontSize:18,

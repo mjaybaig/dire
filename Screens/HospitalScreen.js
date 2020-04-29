@@ -107,7 +107,10 @@ export default class  HospitalScreen extends Component{
             <Text style = {styles.MainTextStyle}>{m.formatted_phone_number}</Text>
             <Text style={styles.textStyle}>Rating:</Text>
             <Text style = {styles.MainTextStyle}>{m.rating}</Text>
-            <Button title = "Direction"
+            <Button
+             title = "Directions to here"
+             
+             color="#F3BA36"
             onPress={() => {
                 this.props.navigation.navigate({
                   routeName: "ShowDirection",
@@ -164,12 +167,23 @@ export default class  HospitalScreen extends Component{
         )
 }
 }
+
+HospitalScreen.navigationOptions = (navigationData) =>{
+   
+    return {
+        headerTitle: "Nearby Hospitals"
+      }
+
+}
 const styles = StyleSheet.create({
     container:{
      flex:1,
     },
     map:{
         ...StyleSheet.absoluteFillObject
+    },
+    dirButton:{
+        backgroundColor: "grey"
     },
     gridItem: {
         flex: 1,

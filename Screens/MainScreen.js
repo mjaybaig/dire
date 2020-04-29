@@ -36,7 +36,7 @@ export default class MainScreen extends Component{
                 })
             }}/>
             <MenueItem icon='hospital'
-                iconName ="Near By Hospitals"
+                iconName ="Nearby Hospitals"
                 onSelect = {() => {
                 this.props.navigation.navigate({
                     routeName: "Hospitals",
@@ -51,7 +51,7 @@ export default class MainScreen extends Component{
 
 MainScreen.navigationOptions = (navigationData) =>{
     return {
-        headerTitle: 'Welcome To Dire'
+        headerTitle: 'Welcome To DIRE'
     }
  }
 

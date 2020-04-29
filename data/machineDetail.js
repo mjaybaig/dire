@@ -34,7 +34,7 @@ import MachineCategory from '../models/machineCategory';
      "1",
      "Bulldozer",
      "#f5a442",
-     "https://pixabay.com/get/54e2d7474d53ad14f1dc8460da2932761d3edee5565773_640.jpg",
+     "https://images.unsplash.com/photo-1555901328-0cd418debc81?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80",
      "A bulldozer is a tractor equipped with a substantial metal plate (known as a blade) used to push large quantities of soil, sand, rubble, or other such material during construction or conversion work and typically equipped at the rear with a claw-like device",
      [
        "Brain or head injuries",
@@ -62,7 +62,7 @@ import MachineCategory from '../models/machineCategory';
      "3",
      "Hay-baler",
      "#f5a442",
-     "https://pixabay.com/get/54e1d34b4d5bb10ff3d89960c62d3f76143fdfe75150_640.jpg",
+     "https://unsplash.com/photos/FJq5WZ6sbNU/download?force=true&w=640",
      "Hay balers are a specialised piece of farm machinery which are used to compress harvested crops into bales for easy storage and transport. Mechanical hay balers are exponentially faster at collecting and compacting hay, and have revolutionised the productive capacity of modern farming operations. Different types of balers are commonly used, each producing a different type of bale – rectangular or cylindrical, of various sizes, bound with twine, strapping, netting, or wire.",
      [
        "Crush injuries",
@@ -90,11 +90,11 @@ import MachineCategory from '../models/machineCategory';
      "4",
      "Quad-bike",
      "#f5a442",
-     "https://pixabay.com/get/57e6d5474852a914f1dc8460da2932761d3edee4575575_640.jpg",
+     "https://unsplash.com/photos/1A0SYHr_yWg/download?force=true&w=640",
      "The all-terrain vehicle (ATV, also known as the quad bike) is one of the indispensable tools for most farmers. Although they are not designed for tractors, they reduce the need for them on most small farms. ATVs can perform a variety of agricultural tasks, including transporting people and equipment from site a to site B, towing trailers, spraying pesticides, and spreading pesticides.",
      [
-       "Collisions with other vehicles",
-       "Driving in weather conditions",
+       "Head/chest gets crushed between quad bike and ground",
+       "Head injuries are commonly sustained on quad bikes",
        "Strangulation from riding through a fence",
        "Broken bones, including pelvis and thigh bone fractures",
      ],
@@ -105,6 +105,14 @@ import MachineCategory from '../models/machineCategory';
        "Abrasions from sharp components (e.g. knives on balers and mowers)",
        "Loading and unloading hay bales (including stacking)",
        "Falling or collapsing hay bales. Workers and others (bystanders) can be placed at risk by falling or collapsing hay bales",
+     ],
+     [
+       "Wear an AS 1698-2006 compliant helmet.",
+       "Never operate an overloaded quad bike",
+       "The more load you carry, the slower your speed should be",
+       "Use tanks with baffles to reduce the movement of liquid in your load",
+       "Avoid hills and rough terrain on your quad bike",
+       "Sunglasses won't cut it - use helmets with visors or use goggles"
      ]
    ),
    new MachineCategory(
@@ -119,18 +127,18 @@ import MachineCategory from '../models/machineCategory';
        "Run over by slasher attachment",
      ],
      [
-       " prone to tipping and rolling.",
+       "Prone to tipping and rolling.",
        "legs (of either rider or passenger) getting caught by the tyres",
        "The quad bike flipping or rolling while negotiating a steep slope",
        "The quad bike hitting an obstacle and rolling over",
        "The rider being hit by a low-hanging obstacle, such as a branch",
      ],
      [
-       "Before Operation, inspect condition of blades, bolts, gearbox, shafts and rotors",
+       "Before Operation, inspect condition of slasher blades, bolts, gearbox, shafts and rotors",
        "Where practical, clear stones and rubbish from ground before starting to slash",
        "The front and rear end of the slasher must be covered by a guard",
        "When slashing on slopes, ensure wheels of tractor are on maximum width",
-       "Ensure area is clear of people"
+       "Ensure area being slashed is clear of people"
      ]
    ),
  ];

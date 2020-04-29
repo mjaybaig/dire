@@ -5,6 +5,7 @@ import React, { Component } from "react";
     import googleKey from "../env"
     import PolyLine from "@mapbox/polyline"
     import Geolocation from 'react-native-geolocation-service'
+
     export default class  ShowDirectionScreen extends Component{
         constructor(props){
             super(props)
@@ -15,7 +16,6 @@ import React, { Component } from "react";
             }
         // this.showDirectionsOnMap = this.showDirectionsOnMap.bind(this)
         }
-
         componentDidMount(){
             let placeId = this.props.navigation.getParam('placeId');
             //continusoly get positon from user and stoping this dismount happens
@@ -75,7 +75,7 @@ import React, { Component } from "react";
                     [this.state.destinationCoords.length - 1]}/>)
             }
         
-        const mapRegion = {
+            const mapRegion = {
             //points and surface
             latitude: this.state.userLatitude,
             longitude: this.state.userLongitude,
@@ -99,3 +99,10 @@ import React, { Component } from "react";
             ...StyleSheet.absoluteFillObject
         }
     })
+ShowDirectionScreen.navigationOptions = (navigationData) =>{
+   
+    return {
+        headerTitle: "Direction"
+      }
+
+}
