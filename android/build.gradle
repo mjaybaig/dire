@@ -34,7 +34,17 @@ allprojects {
             // expo-camera bundles a custom com.google.android:cameraview
             url "$rootDir/../node_modules/expo-camera/android/maven"
         }
-
+         subprojects {
+            afterEvaluate {
+                project ->
+                if (project.hasProperty("android")) {
+                    android {
+                        compileSdkVersion = 28
+                        buildToolsVersion = "28.0.3"
+                    }
+                }
+            }
+        }
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
